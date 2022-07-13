@@ -16,5 +16,9 @@ class Product(models.Model):
     )
     deleted_at = models.DateTimeField(default=None, null=True)
     deleted_by = models.ForeignKey(
-        "auth.User", related_name="product_deleted_by", on_delete=models.DO_NOTHING
+        "auth.User",
+        related_name="product_deleted_by",
+        on_delete=models.DO_NOTHING,
+        default=None,
+        null=True,
     )

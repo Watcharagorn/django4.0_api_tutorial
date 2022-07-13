@@ -20,6 +20,8 @@ def HealthCheck(request):
         return Response({"state": stage, "version": version}, status=status.HTTP_200_OK)
 
 
+app_path = [path("mcm/", include("apps.mcm.urls"))]
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -31,6 +33,7 @@ schema_view = get_schema_view(
     ),
     public=True,
     permission_classes=[permissions.AllowAny],
+    patterns=app_path,
 )
 
 # Wire up our API using automatic URL routing.
@@ -40,8 +43,7 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path("admin/", admin.site.urls),
     path("healthcheck", HealthCheck, name="healthcheck"),
-    path("mcm/", include("apps.mcm.urls")),
     re_path(
         r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
     ),
-]
+] + app_path
