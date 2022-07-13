@@ -1,0 +1,17 @@
+version: '2'
+services:
+  django_rest_standard:
+    container_name: django_rest_standard
+    build:
+      dockerfile: Dockerfile.Dev
+      context: .
+    entrypoint:
+      - bash
+      - ./start-dev.sh
+    # external_links:
+    #   - postgres:pgsql
+    environment:
+      - environment=dev
+    ports:
+      - "8196:8080"
+    network_mode: bridge

@@ -1,0 +1,12 @@
+{
+    "python.formatting.provider": "black",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "sqlite",
+            "database": "${workspaceFolder:django4.0_ecommegce_api}/config/db.sqlite3",
+            "group": "test"
+        }
+    ]
+}
