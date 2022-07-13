@@ -15,7 +15,7 @@ class ProductTypeViewSet(viewsets.ModelViewSet):
 
     queryset = ProductType.objects.all()
     serializer_class = ProductTypeSerializer
-    permission_classes([permissions.IsAuthenticatedOrReadOnly])
+    permission_classes([permissions.AllowAny])
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)

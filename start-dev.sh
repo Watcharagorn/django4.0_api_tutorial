@@ -3,6 +3,7 @@ echo "ENVIRONMENT : ${environment}"
 # yes | python manage.py makemigrations
 echo "migration execution..."
 
+python manage.py create_superuser --username admin --email admin@gmail.com --password admin
 python manage.py migrate
 
 if [ $? != 0 ] ; 
