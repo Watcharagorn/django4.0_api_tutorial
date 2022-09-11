@@ -8,5 +8,6 @@
             "database": "${workspaceFolder:django4.0_ecommegce_api}/config/db.sqlite3",
             "group": "test"
         }
-    ]
+    ],
+    "jira-plugin.workingProject": ""
 }
