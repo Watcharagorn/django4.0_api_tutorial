@@ -21,7 +21,6 @@ def HealthCheck(request):
 
 
 app_path = [path("mcm/", include("apps.mcm.urls"))]
-chat_app_path = [path("chat/", include("apps.chat.urls"))]
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -47,4 +46,4 @@ urlpatterns = [
     re_path(
         r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
     ),
-] + app_path + chat_app_path
+] + app_path
