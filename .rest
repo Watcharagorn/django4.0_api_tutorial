@@ -13,3 +13,14 @@ Content-Length: 53
     "nameTh": "string",
     "nameEn": "string"
 }
+
+###
+
+POST /mcm/otp HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+    "otp": "144014",
+    "phone_number": "0999999999"
+}
