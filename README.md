@@ -1,2 +1,3 @@
 # django4.0_ecommegce_api
-starter for django ecommerce
+
+Django Websocket Tutorial => https://channels.readthedocs.io/en/latest/tutorial/part_1.html
