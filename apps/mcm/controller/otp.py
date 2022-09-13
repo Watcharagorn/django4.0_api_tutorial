@@ -39,11 +39,10 @@ async def async_view(request):
 @async_to_sync
 async def send_otp(request):
 
-    otp = request.data.get("otp")
-    phone_number = request.data.get("phone_number")
+    print(request.body)
 
     # setup for async
     loop = asyncio.get_event_loop()
     loop.create_task(async_sleep())
 
-    return HttpResponse({"otp": otp, "phone_number": phone_number})
+    return HttpResponse(request.body)
