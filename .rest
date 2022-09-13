@@ -3,13 +3,11 @@ content-type: application/json
 
 ###
 
-POST /mcm/product-types/ HTTP/1.1
+POST /mcm/otp HTTP/1.1
 Host: localhost:8000
-Authorization: Basic YWRtaW46YWRtaW4=
 Content-Type: application/json
-Content-Length: 53
 
 {
-    "nameTh": "string",
-    "nameEn": "string"
+    "otp": "144014",
+    "phone_number": "0999999999"
 }

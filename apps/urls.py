@@ -11,7 +11,7 @@ from utilities.env_manager import get_environ
 
 @api_view(["GET"])
 @permission_classes([permissions.IsAuthenticatedOrReadOnly])
-def HealthCheck(request):
+def healthCheck(request):
     try:
         version, stage = get_environ()
     except Exception as identifier:
@@ -21,7 +21,6 @@ def HealthCheck(request):
 
 
 app_path = [path("mcm/", include("apps.mcm.urls"))]
-chat_app_path = [path("chat/", include("apps.chat.urls"))]
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -43,8 +42,8 @@ urlpatterns = [
     # path('', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path("admin/", admin.site.urls),
-    path("healthcheck", HealthCheck, name="healthcheck"),
+    path("healthcheck", healthCheck, name="healthcheck"),
     re_path(
         r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
     ),
-] + app_path + chat_app_path
+] + app_path
