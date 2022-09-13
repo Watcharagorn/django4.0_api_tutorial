@@ -1,23 +1,45 @@
 version: '2'
 services:
   django_rest_standard:
-    container_name: django_rest_standard
+    container_name: celery_django
     build:
       dockerfile: Dockerfile.Dev
       context: .
     entrypoint:
       - bash
       - ./start-dev.sh
-    # external_links:
-    #   - postgres:pgsql
+    external_links:
+      - celery_redis:redis
     environment:
       - environment=dev
     ports:
       - "8196:8080"
     network_mode: bridge
 
-  redis:
-    image: redis:5
+  celery_worker_1:
+    container_name: celery_worker
+    build:
+      dockerfile: Dockerfile.Dev
+      context: .
+    entrypoint:
+      - python 
+      - -m 
+      - celery 
+      - --app 
+      - apps.mcm 
+      - worker 
+      - --pool=solo
+    external_links:
+      - celery_redis:redis
+    environment:
+      - environment=dev
+    ports:
+      - "8197:8080"
+    network_mode: bridge  
+
+  celery_redis:
     container_name: celery_redis
+    image: redis:5
     ports:
       - "6379:6379"
+    network_mode: bridge  

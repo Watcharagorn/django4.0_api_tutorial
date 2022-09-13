@@ -1,5 +1,5 @@
 # Celery settings
-CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_BROKER_URL = "redis://celery_redis:6379"
 CELERY_BROKER_BACKEND = "db+sqlite:///celery.sqlite"
 CELERY_RESULT_BACKEND = "django-db"
 CELERYD_CONCURRENCY = 1

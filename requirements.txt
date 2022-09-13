@@ -15,6 +15,5 @@ SQLAlchemy==1.4.41
 
 #celery
 celery==5.2.7
-django-celery-results=2.4.0
+django-celery-results==2.4.0
 redis==4.3.4
-win10toast
