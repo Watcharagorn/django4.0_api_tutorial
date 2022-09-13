@@ -15,3 +15,8 @@ services:
     ports:
       - "8196:8080"
     network_mode: bridge
+
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
