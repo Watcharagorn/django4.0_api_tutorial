@@ -5,5 +5,5 @@ Django Websocket Tutorial => https://channels.readthedocs.io/en/latest/tutorial/
 
 ## Hot to run
 ```python
-daphne myproject.asgi:application
+uvicorn myproject.asgi:application
 ```

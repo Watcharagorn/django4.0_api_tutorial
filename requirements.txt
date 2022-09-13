@@ -12,6 +12,6 @@ django-db-comments==0.2.2
 coverage==6.4.*
 
 #async extension
-Daphne
+uvicorn==0.18.3
 channels==3.0.5
 channels_redis==3.4.1

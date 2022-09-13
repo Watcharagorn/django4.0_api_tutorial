@@ -2,8 +2,21 @@ GET http://localhost:8000/healthcheck
 content-type: application/json
 
 ###
+GET http://localhost:8000/mcm/api/
+content-type: application/json
 
+###
 POST /mcm/otp HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+    "otp": "144014",
+    "phone_number": "0999999999"
+}
+
+###
+GET /mcm/otp HTTP/1.1
 Host: localhost:8000
 Content-Type: application/json
 

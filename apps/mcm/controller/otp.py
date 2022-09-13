@@ -1,11 +1,9 @@
 from time import sleep
-from rest_framework import status, permissions
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async, async_to_sync
 import asyncio
+import httpx
 
 
 def sync_sleep():
@@ -16,14 +14,29 @@ def sync_sleep():
 
 async def async_sleep():
     for num in range(1, 5):
-        asyncio.sleep(1)
+        await asyncio.sleep(1)
         print("sleep - {}".format(num))
 
 
-## 1. function base view
-# @api_view(["POST"])
-# @permission_classes([permissions.AllowAny])
+async def http_call_async():
+    for num in range(1, 6):
+        await asyncio.sleep(1)
+        print(num)
+    async with httpx.AsyncClient() as client:
+        r = await client.get("https://httpbin.org")
+        print(r)
+
+
+async def async_view(request):
+    loop = asyncio.get_event_loop()
+    loop.create_task(http_call_async())
+    return HttpResponse("Non-blocking HTTP request")
+
+
+## if you need to use other annotation eg.csrf_exempt and etc.
+@sync_to_async
 @csrf_exempt
+@async_to_sync
 async def send_otp(request):
 
     otp = request.data.get("otp")
@@ -31,7 +44,6 @@ async def send_otp(request):
 
     # setup for async
     loop = asyncio.get_event_loop()
-    async_task = sync_to_async(sync_sleep, thread_sensitive=False)
-    loop.create_task(async_task())
+    loop.create_task(async_sleep())
 
     return HttpResponse({"otp": otp, "phone_number": phone_number})
